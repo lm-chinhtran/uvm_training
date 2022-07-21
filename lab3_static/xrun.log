@@ -1,0 +1,64 @@
+xrun(64): 21.03-s005: (c) Copyright 1995-2021 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	21.03-s005: Started on Jul 19, 2022 at 18:13:13 JST
+xrun
+	-f run.f
+		packet_pkg.sv
+		packet_test.sv
+file: packet_pkg.sv
+	package worklib.packet_pkg:sv
+		errors: 0, warnings: 0
+file: packet_test.sv
+	module worklib.packet_test:sv
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		packet_pkg
+		packet_test
+xmelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.packet_test:sv <0x4d5cd41d>
+			streams:   3, words:  9276
+		worklib.packet_pkg:sv <0x559ec499>
+			streams:  11, words:  9831
+		worklib.packet_pkg:sv <0x3830e777>
+			streams:   0, words:     0
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                    Instances  Unique
+		Modules:                    1       1
+		Verilog packages:           1       1
+		Registers:                 19      26
+		Initial blocks:             1       1
+		SV Class declarations:      1       1
+		SV Class specializations:   1       1
+	Writing initial simulation snapshot: worklib.packet_test:sv
+Loading snapshot worklib.packet_test:sv .................... Done
+SVSEED default: 1
+xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+xcelium> source /opt/eda/cadence/XCELIUM2103/tools/xcelium/files/xmsimrc
+xcelium> run
+number of packets 0
+----------------------------
+name: test_packet, type: ANY tag: 1 pktcount 1 tagmode IDED
+from source 0001, to target 0100, data 00000001
+----------------------------------
+
+----------------------------
+name: test_packet1, type: MULTICAST tag: 2 pktcount 2 tagmode IDED
+from source 0001, to target 1010, data 00000010
+----------------------------------
+
+----------------------------
+name: test_packet2, type: MULTICAST tag: 3 pktcount 3 tagmode UNIDED
+from source 0001, to target 1100, data 10000011
+----------------------------------
+
+
+
+number of packets 3
+xmsim: *W,RNQUIE: Simulation is complete.
+xcelium> exit
+TOOL:	xrun(64)	21.03-s005: Exiting on Jul 19, 2022 at 18:13:17 JST  (total: 00:00:04)

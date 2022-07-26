@@ -11,36 +11,13 @@ Copyright Cadence Design Systems (c)2019
 module packet_test;
 import packet_pkg::*;
 
-packet parray [15:0];
+packet_vc pvc;
 packet p;
 bit ok;
-psingle ps;
-pmulticast pm;
-pbroadcast pb;
-initial begin
-  foreach (parray[i])
-    randcase
-      1: begin: single_packet
-        ps = new($sformatf("ps[%0d]",i), 0);
-        ok = ps.randomize();
-        $cast(parray[i], ps);
-      end
-      1: begin: multicast_packet
-        pm = new($sformatf("pm[%0d]",i), 1);
-        ok = pm.randomize();
-        $cast(parray[i], pm);
-      end
-      1: begin: broadcast_packet
-        pb = new($sformatf("pb[%0d]",i), 2);
-        ok = pb.randomize();
-        $cast(parray[i], pb);
-      end
-    endcase
 
-  foreach (parray[i]) begin
-    parray[i].print();
-    validate(parray[i]);
-  end
+initial begin
+  pvc = new("pvc", null);
+  pvc.run();
 end
 
 //--------------------validate functions for verification --------------------
